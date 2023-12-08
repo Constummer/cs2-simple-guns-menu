@@ -13,5 +13,5 @@ Plugin for CS2 that when a player on game types some **`guns`**, gun menu will o
 
 ## TODOS
 - [ ] Add chain selection for example: !guns 1-2-3
-- [ ] Add selection by weapon name as second argument for example:!guns ak
-- [ ] Add second argument variables for example:!guns ak-ak47
+- [ ] Add selection by weapon name as second argument for example: !guns ak
+- [ ] Add second argument variables for example: !guns ak-ak47
