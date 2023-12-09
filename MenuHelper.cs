@@ -16,10 +16,12 @@ public partial class SimpleGunMenuPlugin
 
         internal static void GetGuns(ChatMenu gunMenu, WeaponType? type = null)
         {
-            Dictionary<string, Weapon> weapons = _weapons;
+            Dictionary<string, Weapon> weapons = _weapons.Where(x => x.Value.Display)
+                                                         .ToDictionary(x => x.Key, y => y.Value);
             if (type != null)
             {
-                weapons = _weapons.Where(x => x.Value.Type == type.Value).ToDictionary(x => x.Key, y => y.Value);
+                weapons = _weapons.Where(x => x.Value.Type == type.Value)
+                                  .ToDictionary(x => x.Key, y => y.Value);
             }
             foreach (var item in weapons)
             {
