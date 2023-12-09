@@ -2,13 +2,14 @@
 using CounterStrikeSharp.API.Core.Attributes.Registration;
 using CounterStrikeSharp.API.Modules.Commands;
 using CounterStrikeSharp.API.Modules.Menu;
+using CounterStrikeSharp.API.Modules.Utils;
 
 namespace SimpleGunMenuPlugin;
 
 public partial class SimpleGunMenuPlugin : BasePlugin
 {
     public override string ModuleName => "GunMenuPlugin";
-    public override string ModuleVersion => "0.0.2";
+    public override string ModuleVersion => "0.0.3";
     public override string ModuleAuthor => "Constummer";
     public override string ModuleDescription => "Gun Menu Plugin";
 
@@ -67,6 +68,12 @@ public partial class SimpleGunMenuPlugin : BasePlugin
         if (player.PawnIsAlive == false)
         {
             player.PrintToChat("Only alive players can call this command");
+            return false;
+        }
+
+        if ((CsTeam)player.TeamNum == CsTeam.Terrorist)
+        {
+            player.PrintToChat("Zombies cannot call this command");
             return false;
         }
         return true;
