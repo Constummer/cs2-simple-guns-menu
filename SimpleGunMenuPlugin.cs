@@ -18,6 +18,9 @@ public partial class SimpleGunMenuPlugin : BasePlugin
     }
 
     [ConsoleCommand("guns")]
+    [ConsoleCommand("silahlar")]
+    [ConsoleCommand("silah")]
+    [ConsoleCommand("gun")]
     public void Guns(CCSPlayerController? player, CommandInfo info)
     {
         if (ValidatePlayer(player) == false)
@@ -30,6 +33,8 @@ public partial class SimpleGunMenuPlugin : BasePlugin
         ChatMenus.OpenMenu(player, gunMenu);
     }
 
+    [ConsoleCommand("tabanca")]
+    [ConsoleCommand("tabancalar")]
     [ConsoleCommand("pistols")]
     [ConsoleCommand("secondary")]
     public void Pistols(CCSPlayerController? player, CommandInfo info)
@@ -44,6 +49,8 @@ public partial class SimpleGunMenuPlugin : BasePlugin
         ChatMenus.OpenMenu(player, gunMenu);
     }
 
+    [ConsoleCommand("tufekler")]
+    [ConsoleCommand("tufek")]
     [ConsoleCommand("rifles")]
     [ConsoleCommand("primary")]
     public void Rifles(CCSPlayerController? player, CommandInfo info)
@@ -67,13 +74,13 @@ public partial class SimpleGunMenuPlugin : BasePlugin
 
         if (player.PawnIsAlive == false)
         {
-            player.PrintToChat("Only alive players can call this command");
+            player.PrintToChat("Sadece hayatta oyuncular bu komutu cagirabilir - Only alive players can call this command");
             return false;
         }
 
         if ((CsTeam)player.TeamNum == CsTeam.Terrorist)
         {
-            player.PrintToChat("Zombies cannot call this command");
+            player.PrintToChat("Zombiler bu methodu cagiramaz - Zombies cannot call this command");
             return false;
         }
         return true;
