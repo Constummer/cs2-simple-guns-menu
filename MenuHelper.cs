@@ -8,16 +8,18 @@ public partial class SimpleGunMenuPlugin
     private static class MenuHelper
     {
         private static Dictionary<string, Weapon> _weapons;
+        private static Dictionary<string, Weapon> _weaponCheckers;
 
         static MenuHelper()
         {
-            _weapons = WeaponHelper.LoadWeapons();
+            var res = WeaponHelper.LoadWeapons();
+            _weapons = res.Weapons;
+            _weaponCheckers = res.WeaponCheckers;
         }
 
         internal static void GetGuns(ChatMenu gunMenu, WeaponType? type = null)
         {
-            Dictionary<string, Weapon> weapons = _weapons.Where(x => x.Value.Display)
-                                                         .ToDictionary(x => x.Key, y => y.Value);
+            Dictionary<string, Weapon> weapons = _weapons;
             if (type != null)
             {
                 weapons = _weapons.Where(x => x.Value.Type == type.Value)
@@ -52,7 +54,7 @@ public partial class SimpleGunMenuPlugin
                 if (weapon.Value != null &&
                     string.IsNullOrWhiteSpace(weapon.Value.DesignerName) == false &&
                     weapon.Value.DesignerName != "[null]" &&
-                    _weapons.TryGetValue(weapon.Value.DesignerName, out var currentWeapon))
+                    _weaponCheckers.TryGetValue(weapon.Value.DesignerName, out var currentWeapon))
                 {
                     if (currentWeapon.Type == selectedWeapon.Type)
                     {
