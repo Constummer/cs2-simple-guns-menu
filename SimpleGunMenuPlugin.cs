@@ -8,7 +8,7 @@ namespace SimpleGunMenuPlugin;
 public partial class SimpleGunMenuPlugin : BasePlugin
 {
     public override string ModuleName => "GunMenuPlugin";
-    public override string ModuleVersion => "0.0.1";
+    public override string ModuleVersion => "0.0.2";
     public override string ModuleAuthor => "Constummer";
     public override string ModuleDescription => "Gun Menu Plugin";
 
